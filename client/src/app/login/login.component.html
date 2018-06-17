@@ -1,25 +1,33 @@
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
   <div formGroupName="userData">
     <div class="form-group">
-    <label for="email">E-Mail</label>
-    <input type="text"
+    <mat-form-field >
+      <input 
+          matInput 
+          placeholder="Email" 
+           type="text"
            class="form-control"
            id="email"
            formControlName="email">
-    <div *ngIf="!myForm.controls['userData']['controls']['email'].valid">
+      </mat-form-field>
+    <!--div *ngIf="!myForm.controls['userData']['controls']['email'].valid">
       Required
-    </div>
+    </div-->
   </div>
 
   <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password"
+      <mat-form-field >
+        <input 
+          matInput 
+          placeholder="Password"
+          type="password"
           class="form-control"
           id="password"
           formControlName="password">
-    <div *ngIf="!myForm.controls['userData']['controls']['password'].valid">
+        </mat-form-field>
+    <!--div *ngIf="!myForm.controls['userData']['controls']['password'].valid">
           Required
-    </div>
+    </div-->
   </div>
 </div>
 

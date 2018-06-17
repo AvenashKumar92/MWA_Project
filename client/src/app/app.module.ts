@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { appRoutes } from "./app-routing";
 import { RegistrationComponent } from './registration/registration.component';
 
+import { MyOwnCustomMaterialModule } from './my-own-custom-material.module';
+
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import { RegistrationComponent } from './registration/registration.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    appRoutes
+    appRoutes,
+    MyOwnCustomMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
