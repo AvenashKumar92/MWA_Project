@@ -8,6 +8,8 @@ var authRouter=require('./routes/auth');
 var bodyParser = require("body-parser");
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
+var fs = require('fs');
+
 
 // Database configuration
 const mongoose = require('mongoose');
@@ -54,13 +56,20 @@ app.disable('x-powered-by');
 //using cors to accept cross domain XHR requests 
 app.use(cors());
 
-app.use(logger('dev'));
+
+// create a write stream (in append mode)
+var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'})
+ 
+// setup the logger
+app.use(logger('combined', {stream: accessLogStream}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 

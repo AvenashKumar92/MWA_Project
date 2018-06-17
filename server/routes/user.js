@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const jwt      = require('jsonwebtoken');
 const passport = require('passport');
+const Information=require('../model/information');
 
 const User = require('../model/user.model');
 
@@ -10,16 +11,13 @@ const User = require('../model/user.model');
 router.post('/login', function (req, res, next) {
 
   passport.authenticate('local', {session: false}, (err, user, info) => {
-      console.log(err);
       if (err || !user) {
           //No need to display database internal eror
           err="";
           
           //Display meaning full error
-          let error = {
-            'message': "Login failed",
-            'status': 4000
-          };
+          let error = new Information ("Login failed", 4000);
+
           return res.status(400).json(error);
       }
 
@@ -30,7 +28,8 @@ router.post('/login', function (req, res, next) {
 
           const token = jwt.sign(user, 'my_jwt_secret');
 
-          return res.json({token});
+          let metadata = new Information ("Ok", 200);
+          return res.json({token, metadata});
       });
   })
   (req, res);
