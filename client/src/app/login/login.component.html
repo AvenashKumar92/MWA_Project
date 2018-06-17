@@ -1,38 +1,28 @@
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-  <div formGroupName="userData">
-    <div class="form-group">
-    <mat-form-field >
-      <input 
-          matInput 
-          placeholder="Email" 
-           type="text"
-           class="form-control"
-           id="email"
-           formControlName="email">
-      </mat-form-field>
-    <!--div *ngIf="!myForm.controls['userData']['controls']['email'].valid">
-      Required
-    </div-->
-  </div>
+<mat-card class = "example-card">
+	<mat-card-header>
+		    <div mat-card-avatar class="header-image"></div>
+	</mat-card-header>
+	<mat-card-content>
+		<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+			<div formGroupName="userData">
+				<div class="form-group">
+					<mat-form-field>
+						<input matInput placeholder="Email" type="text" class="form-control" id="email" formControlName="email">
+					</mat-form-field>
+				</div>
 
-  <div class="form-group">
-      <mat-form-field >
-        <input 
-          matInput 
-          placeholder="Password"
-          type="password"
-          class="form-control"
-          id="password"
-          formControlName="password">
-        </mat-form-field>
-    <!--div *ngIf="!myForm.controls['userData']['controls']['password'].valid">
-          Required
-    </div-->
-  </div>
-</div>
+				<div class="form-group">
+					<mat-form-field>
+						<input matInput placeholder="Password" type="password" class="form-control" id="password" formControlName="password">
+					</mat-form-field>
+				</div>
+			</div>
 
-  <p><button><a href="/registration">Sign Up</a></button></p>
-  <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Sign In</button>
-  <router-outlet></router-outlet>
+		
+			<button class="btn" type="submit" mat-raised-button color="primary" [disabled]="!myForm.valid">Sign In</button>
+			<a class="btn" mat-raised-button color="primary" href="/registration">Sign Up</a>
+			<router-outlet></router-outlet>
 
-  </form>
+		</form>
+	</mat-card-content>
+</mat-card>
