@@ -22,7 +22,6 @@ var userSchema = new mongoose.Schema(
 
 );
 userSchema.statics.validateCredentials=function(emailID, pass, cb){
-    //return this.find({email:emailID, password:pass}).select({email:1, password:1}).exec(cb);
     return this.find({email:emailID, password:pass}, cb);
 }
 userSchema.statics.findByEmail=function(emailID, cb){

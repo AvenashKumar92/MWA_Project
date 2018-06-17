@@ -3,6 +3,7 @@ const router = express.Router();
 const jwt      = require('jsonwebtoken');
 const passport = require('passport');
 const Information=require('../model/information');
+const Globals=require('../model/globals');
 
 const User = require('../model/user.model');
 
@@ -16,9 +17,9 @@ router.post('/login', function (req, res, next) {
           err="";
           
           //Display meaning full error
-          let error = new Information ("Login failed", 4000);
+          let information = new Information (Globals.AUTH_ERROR, "Login failed");
 
-          return res.status(400).json(error);
+          return res.status(400).json({information});
       }
 
       req.login(user, {session: false}, (err) => {
@@ -28,8 +29,8 @@ router.post('/login', function (req, res, next) {
 
           const token = jwt.sign(user, 'my_jwt_secret');
 
-          let metadata = new Information ("Ok", 200);
-          return res.json({token, metadata});
+          let information = new Information (Globals.SUCCESS);
+          return res.json({token, information});
       });
   })
   (req, res);
@@ -59,11 +60,19 @@ router.post('/register', function (req, res) {
   // Save User in the database
   user.save()
     .then(data => {
-      res.send(data);
+      let information=new Information(Globals.SUCCESS, 'User added successfully');
+      res.json({information});
     }).catch(err => {
-      res.status(500).send({
-        message: err.message || "Some error occurred while registering the User."
-      });
+
+      if(err.code===11000){
+
+        let information=new Information(Globals.DB_INSERTION, 'Email is already registered on server');
+        res.status(400).json({err, information});
+      }
+      else{
+        let information=new Information(Globals.DB_INSERTION, err.message);
+        res.status(400).json({err, information});
+      }
     });
 })
 

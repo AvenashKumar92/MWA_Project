@@ -1,5 +1,5 @@
 class Information{
-    constructor(message, status){
+    constructor(status,message='Ok'){
         this.message=message;
         this.status=status;
     }
