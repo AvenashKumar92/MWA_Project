@@ -2,24 +2,32 @@ const passport    = require('passport');
 const passportJWT = require("passport-jwt");
 
 const ExtractJWT = passportJWT.ExtractJwt;
-
 const LocalStrategy = require('passport-local').Strategy;
 const JWTStrategy   = passportJWT.Strategy;
-var user={email:"", passport:""};
+
+const User = require('../model/user.model');
+
+var user={email:"", password:""};
 passport.use(new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password'
     },
-    function(username, password, done) {
-        //User.findOne({ username: username }, function (err, user) {
-          //if (err) { return done(err); }
-          user.email=username;
-          user.password=password;
-          if (!user) { return done(null, false); }
-          //if (!user.verifyPassword(password)) { return done(null, false); }
-          return done(null, user);
-        //});
-      //}
+    function(email, password, done) {
+
+        User.validateCredentials(email, password, function(err, data){
+            if(err){
+                return done(err);
+            }
+            if(!data || data.length<=0){
+                err="Email or password incorrect";
+                return done(err);
+            }
+            let user = {
+                'email': data[0].email,
+                'password': data[0].password
+              };
+            return done(null, user);
+        })
     }
 ));
 
@@ -27,21 +35,21 @@ passport.use(new JWTStrategy({
         jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
         secretOrKey   : 'your_jwt_secret'
     },
-    function (jwtPayload, cb) {
+    function (jwtPayload, done) {
 
-        if(jwtPayload.email=="email1"){
-            return cb(null, user);
-        }
-        else{
-            return cb(null,{err:"Not found"});
-        }
-        //find the user in db if needed
-        /*return UserModel.findOneById(jwtPayload.id)
-            .then(user => {
-                return cb(null, user);
-            })
-            .catch(err => {
-                return cb(err);
-            });*/
+        User.validateCredentials(jwtPayload.email, jwtPayload.password, function(err, data){
+            if(err){
+                return done(err);
+            }
+            if(!data || data.length<=0){
+                err="Unauthorized access";
+                return done(err);
+            }
+            let user = {
+                'email': data[0].email,
+                'password': data[0].password
+              };
+            return done(null, jwtPayload);
+        })
     }
 ));

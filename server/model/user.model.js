@@ -7,20 +7,27 @@ var userSchema = new mongoose.Schema(
             cname: String,
             country: String,
             designation: String,
-            State: String
+            state: String
         },
 
 
         contact: String,
-        cpassword: String,
-        email: String,
+        password: String,
+        email: {type:String, unique:true},
         fname: String,
         lname: String,
-        password: String,
-        Portfolio: String
+        portfolio: String
     }
 
 
 );
+userSchema.statics.validateCredentials=function(emailID, pass, cb){
+    //return this.find({email:emailID, password:pass}).select({email:1, password:1}).exec(cb);
+    return this.find({email:emailID, password:pass}, cb);
+}
+userSchema.statics.findByEmail=function(emailID, cb){
+    return this.find({email:emailID}, cb);
+}
+
 
 module.exports = mongoose.model('user', userSchema);

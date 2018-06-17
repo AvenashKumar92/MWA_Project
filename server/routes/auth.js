@@ -1,34 +1,49 @@
-const express = require('express');
-const router  = express.Router();
+var express = require('express');
+var router = express.Router();
 
-const jwt      = require('jsonwebtoken');
-const passport = require('passport');
+/*Return questions */
+router.get('/questions', function (req, res, next) {
+  res.send(req.user);
+});
 
+/*Add question */
+router.get('/add/question', function (req, res, next) {
+  res.send(req.user);
+});
 
-/* POST login. */
-router.post('/login', function (req, res, next) {
+/*Remove question */
+router.get('/remove/question', function (req, res, next) {
+  res.send(req.user);
+});
 
-    passport.authenticate('local', {session: false}, (err, user, info) => {
-        console.log(err);
-        if (err || !user) {
-            return res.status(400).json({
-                message: info ? info.message : 'Login failed',
-                user   : user
-            });
-        }
+/*Return comments */
+router.get('/comments', function (req, res, next) {
+  res.send(req.user);
+});
 
-        req.login(user, {session: false}, (err) => {
-            if (err) {
-                res.send(err);
-            }
+/*Add comment */
+router.get('/add/comment', function (req, res, next) {
+  res.send(req.user);
+});
 
-            const token = jwt.sign(user, 'your_jwt_secret');
+/*Remove comment */
+router.get('/remove/comment', function (req, res, next) {
+  res.send(req.user);
+});
 
-            return res.json({user, token});
-        });
-    })
-    (req, res);
+/*Return subscriptions */
+router.get('/subscriptions', function (req, res, next) {
+  res.send(req.user);
+});
 
+/*Add subscription */
+router.get('/add/subscription', function (req, res, next) {
+  res.send(req.user);
+});
+
+/*Remove subscription */
+router.get('/remove/subscription', function (req, res, next) {
+  res.send(req.user);
 });
 
 module.exports = router;

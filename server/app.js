@@ -4,13 +4,25 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
-var loginRouter=require('./routes/login');
-var auth = require('./routes/auth');
+var authRouter=require('./routes/auth');
 var bodyParser = require("body-parser");
-
-
 var indexRouter = require('./routes/index');
-var usersRegistrationRouter = require('./routes/users');
+var userRouter = require('./routes/user');
+
+// Database configuration
+const mongoose = require('mongoose');
+const url = 'mongodb://localhost:27017/forum'
+mongoose.Promise = global.Promise;
+
+// Connecting database
+mongoose.connect(url)
+  .then(() => {
+    console.log("Successfully connected to the database");
+  }).catch(err => {
+    console.log(err);
+    console.log('Could not connect to the database. Exiting now...');
+    process.exit();
+  });
 
 var app = express();
 
@@ -53,9 +65,8 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/login', passport.authenticate('jwt', {session: false}), loginRouter);
-app.use('/auth', auth);
-app.use('/registration', usersRegistrationRouter);
+app.use('/auth', passport.authenticate('jwt', {session: false}), authRouter);
+app.use('/user', userRouter);
 
 
 // catch 404 and forward to error handler
