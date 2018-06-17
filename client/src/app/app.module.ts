@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { appRoutes } from "./app-routing";
+import { RegistrationComponent } from './registration/registration.component';
 
 
 
@@ -13,6 +14,7 @@ import { appRoutes } from "./app-routing";
   declarations: [
     AppComponent,
     LoginComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,
