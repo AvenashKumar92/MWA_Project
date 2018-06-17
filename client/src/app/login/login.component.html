@@ -1,0 +1,30 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <div formGroupName="userData">
+    <div class="form-group">
+    <label for="email">E-Mail</label>
+    <input type="text"
+           class="form-control"
+           id="email"
+           formControlName="email">
+    <div *ngIf="!myForm.controls['userData']['controls']['email'].valid">
+      Required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password"
+          class="form-control"
+          id="password"
+          formControlName="password">
+    <div *ngIf="!myForm.controls['userData']['controls']['password'].valid">
+          Required
+    </div>
+  </div>
+</div>
+
+  <p><button><a href="/registration">Sign Up</a></button></p>
+  <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Sign In</button>
+  <router-outlet></router-outlet>
+
+  </form>
