@@ -16,7 +16,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { DataService } from './data/data.service';
 import { PostDialogComponent } from './post-dialog/post-dialog.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
-import { DiscussionComponent } from './discussion/discussion.component';
+import { QuestionComponent } from './question/question.component';
 import { CommentsComponent } from './comments/comments.component';
 
 @NgModule({
@@ -26,7 +26,7 @@ import { CommentsComponent } from './comments/comments.component';
     RegistrationComponent,
     HomeComponent,
     PostDialogComponent,
-    DiscussionComponent,
+    QuestionComponent,
     CommentsComponent
   ],
   entryComponents: [PostDialogComponent],
