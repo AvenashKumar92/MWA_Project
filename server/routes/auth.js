@@ -15,12 +15,36 @@ router.get('/questions', function (req, res, next) {
       res.status(400).json({ err, information });
     }
     if (!data || data.length <= 0) {
-      information.message = "No question is found in the database";
+      information.message = "No questions are found in the database";
       information.status=Globals.DB_SELECTION;
       res.status(400).json({ data, information });
       return;
     }
     res.json({ data, information });
+  })
+});
+
+/*Return subscribed questions */
+router.get('/subscribed/questions', function (req, res, next) {
+  User.findSubscriptions(req.user.email, function (err, userSubscription) {
+
+    //First find the subscribtions
+    let information = new Information(Globals.SUCCESS);
+    if (err) {
+      information.message = err.message;
+      information.status=Globals.DB_SELECTION;
+      res.status(400).json({ err, information });
+    }
+
+    //Find the questions
+    User.findSubscribedQuestions(req.user.email, userSubscription.subscriptions, function(err,data){
+      if (err) {
+        information.message = err.message;
+        information.status=Globals.DB_SELECTION;
+        res.status(400).json({ err, information });
+      }
+      res.json({ data, information });
+    });
   })
 });
 

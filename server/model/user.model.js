@@ -27,30 +27,39 @@ var userSchema = new mongoose.Schema(
 
 
 );
+
+//Done
 userSchema.statics.validateCredentials=function(emailID, pass, cb){
     return this.find({email:emailID, password:pass}, cb);
 }
+
+//Done
 userSchema.statics.findByEmail=function(emailID, cb){
     return this.find({email:emailID}, cb);
 }
 
-//In progress
+//Done
 userSchema.statics.findSubscriptions=function(emailID,cb){
-    return this.find({email:emailID}).select('subscriptions').exec(cb);
+    return this.findOne({email:emailID}).select('subscriptions').exec(cb);
 }
 
 //Done
 userSchema.statics.findQuestions=function(emailID, cb){
-    //return this.find({email:emailID}, cb);
     return this.find({email:emailID}).select('questions').exec(cb);
 }
 
-userSchema.statics.findSubscribedQuestions=function(emailID, cb){
+userSchema.statics.findSubscribedQuestions=function(emailID, subscriptions, cb){
+    return this.find({email:{$ne:emailID}, 
+        questions:{$elemMatch: {topics: {$in:subscriptions}}}}).select('questions').exec(cb);
+
+}
+
+/*userSchema.statics.findSubscribedQuestions=function(emailID, subscriptions,  cb){
     this.findSubscriptions(emailID, function(err, subscriptions){
-        return this.find({email:{$ne:emailID}, 
-            questions:{$elemMatch: {topics: {$in:subscriptions}}}}).select('questions').exec(cb);
+        console.log(subscriptions.subscriptions);
+        return userSchema.statics.findSubQuestions(emailID, subscriptions, cb);
     })
     
-}
+}*/
 
 module.exports = mongoose.model('user', userSchema);
