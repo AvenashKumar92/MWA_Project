@@ -4,7 +4,7 @@ import {MatButtonModule, MatCardModule, MatCheckboxModule,
   MatFormFieldModule, MatInputModule, MatRippleModule, 
   MatToolbarModule, MatProgressSpinnerModule, MatSidenavModule,
    MatListModule, MatIconModule, MatTableModule, 
-   MatDialogModule, MatSelectModule} from '@angular/material';
+   MatDialogModule, MatSelectModule, MatStepperModule} from '@angular/material';
 
 @NgModule({
   imports: [MatButtonModule, MatCardModule,MatCheckboxModule, 
@@ -17,6 +17,6 @@ import {MatButtonModule, MatCardModule, MatCheckboxModule,
     NoopAnimationsModule, MatFormFieldModule, MatInputModule,
      MatRippleModule, MatToolbarModule, MatProgressSpinnerModule, 
      MatSidenavModule, MatListModule, MatIconModule,
-  MatTableModule, MatDialogModule, MatSelectModule]
+  MatTableModule, MatDialogModule, MatSelectModule, MatStepperModule]
 })
 export class MyOwnCustomMaterialModule { }

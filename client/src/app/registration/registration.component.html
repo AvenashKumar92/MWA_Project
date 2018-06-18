@@ -1,144 +1,80 @@
-
-
-
-
 <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="fname">First Name</label>
-      <input type="text"
-            class="form-control"
-            id="fname"
-            formControlName="fname">
-      <div *ngIf="!registrationForm.controls['fname'].valid">
-        Required
-      </div>
-    </div>
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput placeholder="First Name" type="text" class="form-control" id="fname" formControlName="fname">
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput placeholder="Last Name" type="text" class="form-control" id="lname" formControlName="lname">
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput placeholder="Password" type="password" class="form-control" id="password" formControlName="password">
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput placeholder="Confirm Password" type="password" class="form-control" id="cpassword" formControlName="cpassword">
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput placeholder="Email" type="email" class="form-control" id="email" formControlName="email">
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput placeholder="Contact" type="number" class="form-control" id="contact" formControlName="contact">
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput placeholder="Portfolio" type="url" class="form-control" id="portfolio" formControlName="portfolio">
+    </mat-form-field>
+  </div>
+
+  <div formGroupName="company">
 
     <div class="form-group">
-      <label for="lname">Last Name</label>
-      <input type="text"
-            class="form-control"
-            id="lname"
-            formControlName="lname">
-      <div *ngIf="!registrationForm.controls['lname'].valid">
-        Required
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password"
-            class="form-control"
-            id="password"
-            formControlName="password">
-      <div *ngIf="!registrationForm.controls['password'].valid">
-        Required
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="cpassword">Confirm Password</label>
-      <input type="password"
-            class="form-control"
-            id="cpassword"
-            formControlName="cpassword">
-      <div *ngIf="!registrationForm.controls['cpassword'].valid">
-        Required
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email"
-            class="form-control"
-            id="email"
-            formControlName="email">
-      <div *ngIf="!registrationForm.controls['email'].valid">
-        Required
-      </div>
+      <mat-form-field>
+        <input matInput placeholder="Designation" type="text" class="form-control" id="designation" formControlName="designation">
+      </mat-form-field>
     </div>
 
     <div class="form-group">
-      <label for="contact">Contact</label>
-      <input type="number"
-            class="form-control"
-            id="contact"
-            formControlName="contact">
-      <div *ngIf="!registrationForm.controls['contact'].valid">
-        Required
-      </div>
+      <mat-form-field>
+        <input matInput placeholder="Company Name" type="text" class="form-control" id="cname" formControlName="cname">
+      </mat-form-field>
     </div>
 
     <div class="form-group">
-      <label for="portfolio">Portfolio</label>
-      <input type="url"
-            class="form-control"
-            id="portfolio"
-            formControlName="portfolio">
-      <div *ngIf="!registrationForm.controls['portfolio'].valid">
-        Required
-      </div>
+      <mat-form-field>
+        <input matInput placeholder="City" type="text" class="form-control" id="city" formControlName="city">
+      </mat-form-field>
     </div>
 
-    <div formGroupName="company">
-
-      <div class="form-group">
-        <label for="designation">Designation</label>
-        <input type="text"
-              class="form-control"
-              id="designation"
-              formControlName="designation">
-        <div *ngIf="!registrationForm.controls['company']['controls']['designation'].valid">
-          Required
-        </div>
-      </div>
-
-      <div class="form-group">
-          <label for="cname">Company Name</label>
-          <input type="text"
-                class="form-control"
-                id="cname"
-                formControlName="cname">
-          <div *ngIf="!registrationForm.controls['company']['controls']['cname'].valid">
-            Required
-          </div>
-        </div>
-
-        <div class="form-group">
-            <label for="city">City</label>
-            <input type="text"
-                  class="form-control"
-                  id="city"
-                  formControlName="city">
-            <div *ngIf="!registrationForm.controls['company']['controls']['city'].valid">
-              Required
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="state">State</label>
-            <input type="text"
-                  class="form-control"
-                  id="state"
-                  formControlName="state">
-            <div *ngIf="!registrationForm.controls['company']['controls']['state'].valid">
-              Required
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="country">Country</label>
-            <input type="text"
-                  class="form-control"
-                  id="country"
-                  formControlName="country">
-            <div *ngIf="!registrationForm.controls['company']['controls']['country'].valid">
-              Required
-            </div>
-        </div>
-
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput placeholder="State" type="text" class="form-control" id="state" formControlName="state">
+      </mat-form-field>
     </div>
-  <button type="submit" class="btn btn-primary" [disabled]="!registrationForm.valid">Submit</button>
+
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput placeholder="Country" type="text" class="form-control" id="country" formControlName="country">
+      </mat-form-field>
+    </div>
+
+  </div>
+  <button class="btn" type="submit" mat-raised-button color="primary" [disabled]="!registrationForm.valid">Submit</button>
   <router-outlet></router-outlet>
 
-  </form>
+</form>

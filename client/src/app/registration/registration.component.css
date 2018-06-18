@@ -1,0 +1,9 @@
+.cards {
+    width: 30%;
+    margin: 5% auto;
+  }
+
+* {
+    text-align: center;
+    font-size: 20px;
+  }

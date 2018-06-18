@@ -25,7 +25,7 @@ export class RegistrationComponent implements OnInit {
           'designation':['designation'],
           'cname':['cname'],
           'city':['city'],
-          'state':['state'],
+          'state':['state', [Validators.required]],
           'country':['country']
         })
       }, {validator: this.cpasswordMatchValidator});
