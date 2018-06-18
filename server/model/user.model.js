@@ -10,6 +10,12 @@ var userSchema = new mongoose.Schema(
             state: String
         },
 
+        subscriptions:[String],
+        questions:[{
+            question:String,
+            topics:[String],
+            comment:[String]
+        }],
 
         contact: String,
         password: String,
@@ -28,5 +34,22 @@ userSchema.statics.findByEmail=function(emailID, cb){
     return this.find({email:emailID}, cb);
 }
 
+userSchema.statics.findSubscriptions=function(emailID,cb){
+    return this.find({email:emailID}).select('subscriptions').exec(cb);
+}
+
+//Done
+userSchema.statics.findQuestions=function(emailID, cb){
+    //return this.find({email:emailID}, cb);
+    return this.find({email:emailID}).select('questions').exec(cb);
+}
+
+userSchema.statics.findSubscribedQuestions=function(emailID, cb){
+    this.findSubscriptions(emailID, function(err, subscriptions){
+        return this.find({email:{$ne:emailID}, 
+            questions:{$elemMatch: {topics: {$in:subscriptions}}}}).select('questions').exec(cb);
+    })
+    
+}
 
 module.exports = mongoose.model('user', userSchema);

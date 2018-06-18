@@ -1,0 +1,70 @@
+{
+"company":{
+"city":"city",
+"cname":"cname",
+"country":"country",
+"designation":"designation",
+"state":"state"
+},
+
+"subscriptions":["C++", "Java", "Python"],
+"questions":[{
+            "question":"What are C++ Templates",
+            "topics":["C++", "Templates"],
+            "comment":["These are C++ Generics"]
+        }],
+
+"contact":"contact",
+"email":"avenash_kumar@hotmail.com",
+"fname":"fname",
+"lname":"lname",
+"password":"password",
+"portfolio":"portfolio"
+}
+
+//No questions
+{
+"company":{
+"city":"Fairfield",
+"cname":"Microsoft",
+"country":"USA",
+"designation":"Software Engineer",
+"state":"IA"
+},
+
+"subscriptions":["C++", "Java", "Python"],
+"questions":[],
+
+"contact":"3243756115",
+"email":"avenash_kumar@hotmail.com",
+"fname":"Avenash",
+"lname":"Kumar",
+"password":"password",
+"portfolio":"https://github.com/AvenashKumar92/MWA_Lab14"
+}
+
+
+
+//No comments
+{
+"company":{
+"city":"Chicago",
+"cname":"Facebook",
+"country":"USA",
+"designation":"Software Engineer",
+"state":"IA"
+},
+
+"subscriptions":["NodeJS", "Angular", "Python"],
+"questions":[{
+            "question":"What is event loop",
+            "topics":["NodeJS", "Angular"]
+        }],
+
+"contact":"3456429889",
+"email":"alain@mum.edu",
+"fname":"Alain",
+"lname":"Messebo",
+"password":"password",
+"portfolio":"www.linkdin/alain"
+}

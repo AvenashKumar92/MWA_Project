@@ -49,6 +49,8 @@ router.post('/register', function (req, res) {
       state: req.body.company.state
     },
 
+    subscriptions:req.body.subscriptions,
+    questions:req.body.questions,
     contact: req.body.contact,
     email: req.body.email,
     fname: req.body.fname,
@@ -65,7 +67,6 @@ router.post('/register', function (req, res) {
     }).catch(err => {
 
       if(err.code===11000){
-
         let information=new Information(Globals.DB_INSERTION, 'Email is already registered on server');
         res.status(400).json({err, information});
       }

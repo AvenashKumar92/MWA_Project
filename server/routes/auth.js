@@ -1,9 +1,27 @@
 var express = require('express');
 var router = express.Router();
+const Information = require('../model/information');
+const User = require('../model/user.model');
+const Globals=require('../model/globals')
 
-/*Return questions */
+/*Return questions (Which asks by the same user)*/
 router.get('/questions', function (req, res, next) {
-  res.send(req.user);
+  User.findQuestions(req.user.email, function (err, data) {
+
+    let information = new Information(Globals.SUCCESS);
+    if (err) {
+      information.message = err.message;
+      information.status=Globals.DB_SELECTION;
+      res.status(400).json({ err, information });
+    }
+    if (!data || data.length <= 0) {
+      information.message = "No question is found in the database";
+      information.status=Globals.DB_SELECTION;
+      res.status(400).json({ data, information });
+      return;
+    }
+    res.json({ data, information });
+  })
 });
 
 /*Add question */
