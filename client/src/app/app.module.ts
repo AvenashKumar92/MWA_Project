@@ -18,6 +18,7 @@ import { PostDialogComponent } from './post-dialog/post-dialog.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { QuestionComponent } from './question/question.component';
 import { CommentsComponent } from './comments/comments.component';
+import { CommentService } from './service/comment.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { CommentsComponent } from './comments/comments.component';
     appRoutes,
     MyOwnCustomMaterialModule
   ],
-  providers: [DataService, { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }
+  providers: [DataService, CommentService, { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }
   ],
 
   bootstrap: [AppComponent]
