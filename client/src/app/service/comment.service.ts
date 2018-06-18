@@ -1,51 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Comment } from '../model/Comment';
 import 'rxjs/add/operator/toPromise';
+import { HttpClient } from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentService {
 
+  serverUrl: string = "http://localhost:8080";
   constructor(
-    private commentApi //: AnswerApi
+    private http: HttpClient
   ) { }
 
-  getAnswers(questionId) {
-    let query = {
-      questionId: questionId
-    }
-    //return this.commentApi.find<Comment>({where: query}).toPromise()
+
+  addComment() {
+    return this.http.get(this.serverUrl + '/add/comment');
   }
 
-  getAnswer(anserId) {
-    let query = {
-      id: anserId
-    }
-    //return this.commentApi.find<Comment>({where: query}).toPromise()
-  }
-
-  createComment(values) {
-    let data = new Comment();
-    data.comment = values.answer;
-    data.questionId = values.questionId;
-    //return this.commentApi.create<Comment>(data).toPromise()
-  }
-
-  updateComment(values) {
-    let data = new Comment();
-    data.comment = values.comment;
-    data.positiveVotes = values.positiveVotes;
-    data.negativeVotes = values.negativeVotes;
-    data.questionId = values.questionId;
-    //return this.answerApi.updateAttributes<Comment>(values.id, data).toPromise()
-  }
-
-  countComment(questionId) {
-    let query = {
-      questionId: questionId
-    }
-    //return this.commentApi.count({where: query})
-    //.toPromise()
+  removeComment() {
+    return this.http.get(this.serverUrl + '/remove/comment');
   }
 }

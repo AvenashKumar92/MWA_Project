@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Post } from '../Post';
+import { Post } from '../model/Post';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 

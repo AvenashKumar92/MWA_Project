@@ -16,8 +16,8 @@ export class CommentsComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    public commentsService: CommentService,
-    public thisDialogRef: MatDialogRef<CommentsComponent>,
+    private commentsService: CommentService,
+    private thisDialogRef: MatDialogRef<CommentsComponent>,
     @Inject(MAT_DIALOG_DATA) public modalData: any,
   ) { }
 

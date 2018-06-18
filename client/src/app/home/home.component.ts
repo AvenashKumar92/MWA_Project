@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data/data.service';
-import { Post } from '../Post';
+import { Post } from '../model/Post';
 import { DataSource } from '@angular/cdk/table';
 import { Observable } from 'rxjs/Observable';
 import { PostDialogComponent } from '../post-dialog/post-dialog.component';

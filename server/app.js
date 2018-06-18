@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
-var authRouter=require('./routes/auth');
+var authRouter = require('./routes/auth');
 var bodyParser = require("body-parser");
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
@@ -28,7 +28,7 @@ mongoose.connect(url)
 
 var app = express();
 
-const passport    = require('passport');
+const passport = require('passport');
 require('./routes/passport');
 //app.use(require('./routes/passport'));
 
@@ -58,10 +58,10 @@ app.use(cors());
 
 
 // create a write stream (in append mode)
-var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'})
- 
+var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
+
 // setup the logger
-app.use(logger('combined', {stream: accessLogStream}));
+app.use(logger('combined', { stream: accessLogStream }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -74,7 +74,8 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/auth', passport.authenticate('jwt', {session: false}), authRouter);
+app.use('/auth', passport.authenticate('jwt', { session: false }), authRouter);
+//app.use('/auth', authRouter);
 app.use('/user', userRouter);
 
 

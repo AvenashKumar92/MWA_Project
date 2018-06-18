@@ -19,6 +19,8 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { QuestionComponent } from './question/question.component';
 import { CommentsComponent } from './comments/comments.component';
 import { CommentService } from './service/comment.service';
+import { QuestionService } from './service/question.service';
+import { SubscribeService } from './service/subscribtions.service';
 
 @NgModule({
   declarations: [
@@ -35,13 +37,13 @@ import { CommentService } from './service/comment.service';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     appRoutes,
-    MyOwnCustomMaterialModule
+    MyOwnCustomMaterialModule,
+    HttpClientModule
   ],
-  providers: [DataService, CommentService, { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }
+  providers: [DataService, CommentService, QuestionService, SubscribeService, { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }
   ],
 
   bootstrap: [AppComponent]

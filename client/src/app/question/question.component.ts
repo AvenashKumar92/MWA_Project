@@ -29,19 +29,19 @@ export class QuestionComponent implements OnInit {
     })
   }
 
-  openNewAnswerModal(questionId) {
+  openNewCommmentModal(questionId) {
     let dialogRef = this.dialog.open(CommentsComponent, {
       data: { questionId: questionId }
     });
 
-    dialogRef.afterClosed().subscribe(answer => {
-      if (answer) {
-        this.addAnswerToList(answer);
+    dialogRef.afterClosed().subscribe(comment => {
+      if (comment) {
+        this.addCommentToList(comment);
       }
     })
   }
 
-  openUpdateAnswerModal(answer) {
+  openUpdateCommentModal(answer) {
     let dialogRef = this.dialog.open(CommentsComponent, {
       data: { answer: answer }
     });
@@ -62,18 +62,18 @@ export class QuestionComponent implements OnInit {
 
   }
 
-  addPositiveVote(answer) {
-    answer.positiveVotes += 1;
-    this.commentsService.updateComment(answer);
+  addPositiveVote(comment) {
+    comment.positiveVotes += 1;
+    this.commentsService.updateComment(comment);
   }
 
-  addNegativeVote(answer) {
-    answer.negativeVotes += 1;
-    this.commentsService.updateComment(answer);
+  addNegativeVote(comment) {
+    comment.negativeVotes += 1;
+    this.commentsService.updateComment(comment);
   }
 
-  addAnswerToList(answer) {
-    this.question.comments.push(answer);
+  addCommentToList(comment) {
+    this.question.comments.push(comment);
   }
 
 }

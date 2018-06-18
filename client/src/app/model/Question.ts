@@ -2,7 +2,6 @@ import { Comment } from './Comment';
 
 declare var Object: any;
 export interface QuestionInterface {
-    "categorySlug"?: string;
     "questionSlug": string;
     "question": string;
     "negativeVotes"?: number;
@@ -12,7 +11,6 @@ export interface QuestionInterface {
 }
 
 export class Question implements QuestionInterface {
-    "categorySlug": string;
     "questionSlug": string;
     "question": string;
     "negativeVotes": number;
