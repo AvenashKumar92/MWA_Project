@@ -1,6 +1,8 @@
 import { Component, OnInit, EventEmitter, Inject } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { CommentService } from '../service/comment.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { DataService } from '../data/data.service';
 
 @Component({
   selector: 'app-comments',
@@ -9,26 +11,35 @@ import { DataService } from '../data/data.service';
 })
 export class CommentsComponent {
 
-  comment = {
-    body: '',
-    date_posted: new Date()
-  };
-  public event: EventEmitter<any> = new EventEmitter();
+  commentForm: FormGroup;
 
   constructor(
-    public dialogRef: MatDialogRef<CommentsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    public dataService: DataService
-  ) {
+    private router: Router,
+    private route: ActivatedRoute,
+    public commentsService: CommentService,
+    public thisDialogRef: MatDialogRef<CommentsComponent>,
+    @Inject(MAT_DIALOG_DATA) public modalData: any,
+  ) { }
+
+  ngOnInit(): void {
+    this.commentForm = new FormGroup({
+      answer: new FormControl('', Validators.required)
+    })
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
+  onCloseCancel() {
+    this.thisDialogRef.close();
   }
 
-  onSubmit(): void {
-    this.event.emit({ data: this.comment });
-    this.dialogRef.close();
+  onSubmit(values) {
+    let data: any = {};
+    data.answer = values.answer;
+    data.questionId = this.modalData.questionId;
+    /*this.commentsService.createComment(data)
+      .then(answer => {
+        this.thisDialogRef.close(answer);
+        this.commentForm.reset();
+      })*/
   }
 
 }

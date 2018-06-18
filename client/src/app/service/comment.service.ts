@@ -32,6 +32,15 @@ export class CommentService {
     //return this.commentApi.create<Comment>(data).toPromise()
   }
 
+  updateComment(values) {
+    let data = new Comment();
+    data.comment = values.comment;
+    data.positiveVotes = values.positiveVotes;
+    data.negativeVotes = values.negativeVotes;
+    data.questionId = values.questionId;
+    //return this.answerApi.updateAttributes<Comment>(values.id, data).toPromise()
+  }
+
   countComment(questionId) {
     let query = {
       questionId: questionId
