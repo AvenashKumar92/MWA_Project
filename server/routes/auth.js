@@ -34,10 +34,6 @@ router.get('/remove/question', function (req, res, next) {
   res.send(req.user);
 });
 
-/*Return comments */
-router.get('/comments', function (req, res, next) {
-  res.send(req.user);
-});
 
 /*Add comment */
 router.get('/add/comment', function (req, res, next) {
@@ -51,7 +47,22 @@ router.get('/remove/comment', function (req, res, next) {
 
 /*Return subscriptions */
 router.get('/subscriptions', function (req, res, next) {
-  res.send(req.user);
+  User.findSubscriptions(req.user.email, function (err, data) {
+
+    let information = new Information(Globals.SUCCESS);
+    if (err) {
+      information.message = err.message;
+      information.status=Globals.DB_SELECTION;
+      res.status(400).json({ err, information });
+    }
+    if (!data) {
+      information.message = "No subscriptions found in database";
+      information.status=Globals.DB_SELECTION;
+      res.status(400).json({ data, information });
+      return;
+    }
+    res.json({ data, information });
+  })
 });
 
 /*Add subscription */

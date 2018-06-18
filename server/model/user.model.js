@@ -34,6 +34,7 @@ userSchema.statics.findByEmail=function(emailID, cb){
     return this.find({email:emailID}, cb);
 }
 
+//In progress
 userSchema.statics.findSubscriptions=function(emailID,cb){
     return this.find({email:emailID}).select('subscriptions').exec(cb);
 }
