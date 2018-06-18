@@ -11,17 +11,11 @@ import { RegistrationComponent } from './registration/registration.component';
 
 import { MyOwnCustomMaterialModule } from './my-own-custom-material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material.module';
 import { HomeComponent } from './home/home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DataService } from './data/data.service';
 import { PostDialogComponent } from './post-dialog/post-dialog.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
-
-
-
-
-
 
 @NgModule({
   declarations: [
@@ -37,12 +31,10 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    appRoutes,
-    MyOwnCustomMaterialModule,
     BrowserAnimationsModule,
-    MaterialModule,
-    FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    appRoutes,
+    MyOwnCustomMaterialModule
   ],
   providers: [DataService, { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }
   ],
