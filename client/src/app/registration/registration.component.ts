@@ -14,19 +14,19 @@ export class RegistrationComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,  
     private router: Router) { 
       this.registrationForm=formBuilder.group({
-        'fname':['fname', [Validators.required]],
-        'lname':['lname', [Validators.required]],
+        'fname':['Avenash', [Validators.required]],
+        'lname':['Kumar', [Validators.required]],
         'password':['password', [Validators.required]],
         'cpassword':['password', [Validators.required]],
-        'email':['email@yahoo.com', [Validators.required, Validators.email]],
-        'contact':['123', [Validators.required]],
-        'portfolio':['portfolio'],
+        'email':['av.kumar@mum.edu', [Validators.required, Validators.email]],
+        'contact':['3473246779', [Validators.required]],
+        'portfolio':['https://www.linkedin.com/in/avenashkumarse1993'],
         'company':formBuilder.group({
-          'designation':['designation'],
-          'cname':['cname'],
-          'city':['city'],
-          'state':['state', [Validators.required]],
-          'country':['country']
+          'designation':['Software Engineer'],
+          'cname':['NASA'],
+          'city':['California'],
+          'state':['California'],
+          'country':['USA']
         })
       }, {validator: this.cpasswordMatchValidator});
     }
