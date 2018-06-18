@@ -17,6 +17,7 @@ import { DataService } from './data/data.service';
 import { PostDialogComponent } from './post-dialog/post-dialog.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { DiscussionComponent } from './discussion/discussion.component';
+import { CommentsComponent } from './comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DiscussionComponent } from './discussion/discussion.component';
     RegistrationComponent,
     HomeComponent,
     PostDialogComponent,
-    DiscussionComponent
+    DiscussionComponent,
+    CommentsComponent
   ],
   entryComponents: [PostDialogComponent],
   imports: [
