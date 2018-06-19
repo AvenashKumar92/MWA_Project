@@ -13,10 +13,10 @@ import {
 } from '@angular/material';
 
 
-class QuesInfo{
+class QuesInfo {
   public topics;
-  public comments[];
-  constructor(public email, public question){
+  public comments;
+  constructor(public email, public question) {
 
   }
 }
@@ -31,21 +31,21 @@ class QuesInfo{
 export class HomeComponent implements OnInit {
 
   panelOpenState: boolean = false;
-  private questionData:QuesInfo[]=[];
+  private questionData: QuesInfo[] = [];
   constructor(private questionService: QuestionService, public dialog: MatDialog,
     private auth: AuthService,
     private router: Router) {
-    
+
   }
 
-  ngOnInit(){
-    this.questionService.getsubscribeQuestions().subscribe((data:any)=>{
+  ngOnInit() {
+    this.questionService.getsubscribeQuestions().subscribe((data: any) => {
       //console.log(data);
-      for( let quesInfo in  data.data){
-        let questionInfo=new QuesInfo(data.data[quesInfo]['email'], data.data[quesInfo]['question']);
-        questionInfo.topics=data.data[quesInfo]['topics'][0].join(", ");
-       
-        questionInfo.comments=data.data[quesInfo]['comments'][0];
+      for (let quesInfo in data.data) {
+        let questionInfo = new QuesInfo(data.data[quesInfo]['email'], data.data[quesInfo]['question']);
+        questionInfo.topics = data.data[quesInfo]['topics'][0].join(", ");
+
+        questionInfo.comments = data.data[quesInfo]['comments'][0];
         console.log(questionInfo.comments);
 
         this.questionData.push(questionInfo);
