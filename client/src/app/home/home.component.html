@@ -73,35 +73,44 @@
           <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
             <h3>Recent Discussions</h3>
           </mat-card-title>
-          <mat-card-content>
-            <div class="example-container mat-elevation-z8">
-              <mat-table #table [dataSource]="dataSource">
-                <!--ng-container matColumnDef="date_posted">
-                  <mat-header-cell *matHeaderCellDef> Date Posted </mat-header-cell>
-                  <mat-cell *matCellDef="let element"> {{element.date_posted | date: 'd/M/y'}} </mat-cell>
-                </ng-container-->
-                <ng-container matColumnDef="title">
-                  <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
-                  <mat-cell *matCellDef="let element"> {{element}} </mat-cell>
-                </ng-container>
-                <!--ng-container matColumnDef="category">
-                  <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
-                  <mat-cell *matCellDef="let element"> {{element.category}} </mat-cell>
-                </ng-container-->
-                <!--ng-container matColumnDef="delete">
-                  <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                  <mat-cell *matCellDef="let element">
-                    <a type="button">
-                      <mat-icon class="icon">delete</mat-icon>
-                    </a>
-                  </mat-cell>
-                </ng-container-->
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-                
-              </mat-table>
+
+          <mat-accordion>
+            <div *ngFor="let item of questionData">
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    {{item.question}}
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    {{item.topics}}
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div *ngFor="let comment of item.comments">
+                  <p>{{comment}}</p>
+                </div>
+
+                <mat-form-field>
+                  <input matInput placeholder="New Comments">
+                </mat-form-field>
+              </mat-expansion-panel>
             </div>
-          </mat-card-content>
+            <!--mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  What is C++ Templates?
+                </mat-panel-title>
+                <mat-panel-description>
+                  Templates, C++
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>Templates are generics of C++.</p>
+              <mat-form-field>
+                <input matInput placeholder="New Comments">
+              </mat-form-field>
+            </mat-expansion-panel-->
+          </mat-accordion>
+
         </mat-card>
       </div>
     </div>

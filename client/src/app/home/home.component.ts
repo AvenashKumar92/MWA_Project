@@ -6,29 +6,53 @@ import { Observable } from 'rxjs/Observable';
 import { PostDialogComponent } from '../post-dialog/post-dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { QuestionService } from '../service/question.service';
-import {AuthService} from '../service/auth.service'
+import { AuthService } from '../service/auth.service'
 import { Router } from '@angular/router';
-
 import {
   MatTableDataSource
 } from '@angular/material';
+
+
+class QuesInfo{
+  public topics;
+  public comments[];
+  constructor(public email, public question){
+
+  }
+}
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+
+export class HomeComponent implements OnInit {
 
   panelOpenState: boolean = false;
-  private questions;
+  private questionData:QuesInfo[]=[];
   constructor(private questionService: QuestionService, public dialog: MatDialog,
-    private auth: AuthService, 
+    private auth: AuthService,
     private router: Router) {
-    this.questions = this.questionService.getsubscribeQuestions();
+    
   }
 
-  onLogOut(){
+  ngOnInit(){
+    this.questionService.getsubscribeQuestions().subscribe((data:any)=>{
+      //console.log(data);
+      for( let quesInfo in  data.data){
+        let questionInfo=new QuesInfo(data.data[quesInfo]['email'], data.data[quesInfo]['question']);
+        questionInfo.topics=data.data[quesInfo]['topics'][0].join(", ");
+       
+        questionInfo.comments=data.data[quesInfo]['comments'][0];
+        console.log(questionInfo.comments);
+
+        this.questionData.push(questionInfo);
+      }
+    });
+  }
+  onLogOut() {
     console.log('HomeComponent: Application logout.......');
     this.auth.logout();
   }
@@ -49,16 +73,18 @@ export class HomeComponent {
   }
 }
 
-export class PostDataSource extends DataSource<any> {
+export class PostDataSource /*extends DataSource<any>*/ {
 
+  panelOpenState: boolean = false;
   constructor(private questionService: QuestionService) {
-    super();
+    //super();
   }
 
   ngOnInit() {
 
   }
-  connect(): Observable<String[]> {
+}
+  /*connect(): Observable<String[]> {
     let posts: String[];
     posts = ['What are c++ templates?', 'What is event loop?'];
     this.questionService.getsubscribeQuestions().subscribe(
@@ -78,7 +104,7 @@ export class PostDataSource extends DataSource<any> {
             singlePost.topics = data.questions[uquestion].questions[question].topics;
             singlePost.question = data.questions[uquestion].questions[question].question;*/
 
-            posts.push(data.questions[uquestion].questions[question].question)
+            /*posts.push(data.questions[uquestion].questions[question].question)
           }
           //posts.push(singlePost);
         }
@@ -94,3 +120,4 @@ export class PostDataSource extends DataSource<any> {
   disconnect() {
   }
 }
+*/
