@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core'
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/observable';
+
 import 'rxjs/add/operator/do';
+
 import { AuthService } from '../service/auth.service'
 import { Router } from '@angular/router';
+
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -13,8 +16,8 @@ export class TokenInterceptor implements HttpInterceptor {
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log('Request Interceptor: Getting JWT-Token.......');
-        console.log("Request Interceptor: JWT-Token: "+this.auth.getToken());
+        console.log('Token Interceptor: Getting JWT-Token.......');
+        console.log("Token Interceptor: JWT-Token: "+this.auth.getToken());
         const authReq = req.clone({
             headers: req.headers.set('Authorization', 'Bearer ' + this.auth.getToken())
         });
@@ -27,11 +30,12 @@ export class TokenInterceptor implements HttpInterceptor {
             },
             (err: any) => {
                 if (err instanceof HttpErrorResponse) {
-                    console.log('Request Interceptor: Checking response.......');
+                    console.log('Token Interceptor: Checking error.......');
                     if (err.status === 401) {
-                        console.log('Request Interceptor: Redirecting to login URL.........')
+                        console.log('Token Interceptor: Redirecting to login URL.......')
                         this.router.navigateByUrl('/login');
                     }
+                    console.log(err.error.information);
                 }
             });
     }

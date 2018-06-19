@@ -11,6 +11,7 @@ import { RegistrationService } from '../service/registration.service';
 })
 export class RegistrationComponent implements OnInit {
 
+  message="";
   registrationForm: FormGroup;
   constructor(private formBuilder: FormBuilder,
     private router: Router,
@@ -66,10 +67,11 @@ export class RegistrationComponent implements OnInit {
     console.log(this.registrationForm.value);
     this.regService.registerUser(this.registrationForm.value).subscribe((data)=>{
       console.log("Registration Component: User added successfully.");
-    }),
-    (err)=>{
+      console.log("Registration Component: Redirecting to login URL.....");
+      this.router.navigateByUrl('/login');
+    }, (err)=>{
       console.log("Registration Component: Unable to add user in database.");
-      console.log(err);
-    }
+      this.message=err.error.information.message;
+    });
   }
 }

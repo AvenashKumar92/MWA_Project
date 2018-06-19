@@ -105,15 +105,10 @@
 
           </div>
           <div>
+            <mat-error>{{message}}</mat-error>
             <button class="btn" mat-button matStepperPrevious mat-raised-button color="primary" type="button">Back</button>
-            <button class="btn" mat-button matStepperNext mat-raised-button color="primary" type="button">Next</button>
+            <button class="btn" type="submit" mat-raised-button color="primary" [disabled]="!registrationForm.valid">Submit</button>
           </div>
-        </mat-step>
-
-        <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
-          <button class="btn" mat-button matStepperPrevious mat-raised-button color="primary" type="button">Back</button>
-          <button class="btn" type="submit" mat-raised-button color="primary" [disabled]="!registrationForm.valid">Submit</button>
         </mat-step>
         <router-outlet></router-outlet>
       </mat-horizontal-stepper>
