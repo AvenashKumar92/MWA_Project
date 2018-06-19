@@ -48,18 +48,15 @@ userSchema.statics.findQuestions=function(emailID, cb){
     return this.find({email:emailID}).select('questions').exec(cb);
 }
 
+//Done
 userSchema.statics.findSubscribedQuestions=function(emailID, subscriptions, cb){
     return this.find({email:{$ne:emailID}, 
         questions:{$elemMatch: {topics: {$in:subscriptions}}}}).select('questions').exec(cb);
 
 }
 
-/*userSchema.statics.findSubscribedQuestions=function(emailID, subscriptions,  cb){
-    this.findSubscriptions(emailID, function(err, subscriptions){
-        console.log(subscriptions.subscriptions);
-        return userSchema.statics.findSubQuestions(emailID, subscriptions, cb);
-    })
-    
-}*/
+userSchema.statics.addQuestion=function(emailID, question, cb){
+        return this.findOneAndUpdate({email: emailID}, {$push: {questions: question}}).exec(cb);
+}
 
 module.exports = mongoose.model('user', userSchema);

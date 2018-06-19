@@ -19,7 +19,7 @@ router.post('/login', function (req, res, next) {
           //Display meaning full error
           let information = new Information (Globals.AUTH_ERROR, "Login failed");
 
-          return res.status(400).json({information});
+          return res.status(401).json({information});
       }
 
       req.login(user, {session: false}, (err) => {
