@@ -3,7 +3,6 @@ import { DataService } from '../data/data.service';
 import { Post, PostMaker } from '../model/Post';
 import { DataSource } from '@angular/cdk/table';
 import { Observable } from 'rxjs/Observable';
-import { PostDialogComponent1 } from '../post-dialog/post-dialog.component';
 import { MatDialog, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material';
 import { QuestionService } from '../service/question.service';
 import { AuthService } from '../service/auth.service'
