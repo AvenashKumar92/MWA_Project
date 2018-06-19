@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const Information = require('../model/information');
 const User = require('../model/user.model');
-const Globals=require('../model/globals')
+const Globals = require('../model/globals')
 
 /*Return questions (Which asks by the same user)*/
 router.get('/questions', function (req, res, next) {
@@ -11,12 +11,12 @@ router.get('/questions', function (req, res, next) {
     let information = new Information(Globals.SUCCESS);
     if (err) {
       information.message = err.message;
-      information.status=Globals.DB_SELECTION;
+      information.status = Globals.DB_SELECTION;
       res.status(400).json({ err, information });
     }
     if (!data || data.length <= 0) {
       information.message = "No questions are found in the database";
-      information.status=Globals.DB_SELECTION;
+      information.status = Globals.DB_SELECTION;
       res.status(400).json({ data, information });
       return;
     }
@@ -32,18 +32,18 @@ router.get('/subscribed/questions', function (req, res, next) {
     let information = new Information(Globals.SUCCESS);
     if (err) {
       information.message = err.message;
-      information.status=Globals.DB_SELECTION;
+      information.status = Globals.DB_SELECTION;
       res.status(400).json({ err, information });
     }
 
     //Find the questions
-    User.findSubscribedQuestions(req.user.email, userSubscription.subscriptions, function(err,data){
+    User.findSubscribedQuestions(req.user.email, userSubscription.subscriptions, function (err, questions) {
       if (err) {
         information.message = err.message;
-        information.status=Globals.DB_SELECTION;
+        information.status = Globals.DB_SELECTION;
         res.status(400).json({ err, information });
       }
-      res.json({ data, information });
+      res.json({ questions, information });
     });
   })
 });
@@ -76,12 +76,12 @@ router.get('/subscriptions', function (req, res, next) {
     let information = new Information(Globals.SUCCESS);
     if (err) {
       information.message = err.message;
-      information.status=Globals.DB_SELECTION;
+      information.status = Globals.DB_SELECTION;
       res.status(400).json({ err, information });
     }
     if (!data) {
       information.message = "No subscriptions found in database";
-      information.status=Globals.DB_SELECTION;
+      information.status = Globals.DB_SELECTION;
       res.status(400).json({ data, information });
       return;
     }

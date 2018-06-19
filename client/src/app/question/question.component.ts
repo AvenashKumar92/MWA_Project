@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CommentService } from '../service/comment.service'
+import { QuestionService } from '../service/question.service'
 import { Question } from '../model/Question';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CommentsComponent } from '../comments/comments.component';
@@ -11,25 +11,32 @@ import { CommentsComponent } from '../comments/comments.component';
 })
 export class QuestionComponent implements OnInit {
 
-  question: Question;
+  private questions;
 
   constructor(
-    private commentsService: CommentService,
+    private questionService: QuestionService,
     private router: Router,
     private route: ActivatedRoute,
     public dialog: MatDialog
-  ) { }
+  ) {
+
+    questionService.getsubscribeQuestions().subscribe((Ques) => {
+      this.questions = Ques;
+      this.questions = this.questions.questions;
+      console.log(this.questions);
+    })
+  }
 
   ngOnInit(): void {
-    this.route.data.subscribe(routeData => {
+    /*this.route.data.subscribe(routeData => {
       let data = routeData['data'];
       if (data) {
         this.question = data.question;
       }
-    })
+    })*/
   }
 
-  openNewCommmentModal(questionId) {
+  /*openNewCommmentModal(questionId) {
     let dialogRef = this.dialog.open(CommentsComponent, {
       data: { questionId: questionId }
     });
@@ -75,5 +82,5 @@ export class QuestionComponent implements OnInit {
   addCommentToList(comment) {
     this.question.comments.push(comment);
   }
-
+*/
 }

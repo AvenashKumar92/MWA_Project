@@ -1,7 +1,13 @@
+import { ClassDirective } from "@angular/flex-layout";
+
 export interface Post {
-    title: string;
-    category: string;
-    date_posted: Date;
-    position: number;
-    body: string;
+    question: string;
+    topics: string[];
+    comments: string[];
+}
+
+export class PostMaker {
+    static create(event: Post) {
+        return { question: event.question, topics: event.topics, comments: event.comments };
+    }
 }
