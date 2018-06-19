@@ -1,41 +1,28 @@
-<!--h1 mat-dialog-title>Hi {{data.name}}</h1>
-<div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <mat-form-field>
-    <input matInput [(ngModel)]="data.animal">
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
-</div-->
-<h1 mat-dialog-title>New Post</h1>
+<h1 class="center" mat-dialog-title>New Post</h1>
 <div mat-dialog-content>
   <form class="example-form" (ngSubmit)="onSubmit()">
     <div>
       <mat-form-field>
-        <input matInput placeholder="Title" type="text" required [(ngModel)]="data.title" name="name">
+        <input matInput placeholder="Title" type="text" required [(ngModel)]="data.question" name="question">
       </mat-form-field>
     </div>
     <div>
       <mat-form-field>
-        <textarea matInput placeholder="Body" required [(ngModel)]="data.body" name="body"></textarea>
+        <textarea matInput placeholder="Description" required [(ngModel)]="data.description" name="description"></textarea>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field>
-        <mat-select matInput placeholder="Category" required [(ngModel)]="data.category" name="category">
+        <mat-select matInput placeholder="Category" required [(ngModel)]="data.topics[0]" name="category">
           <mat-option *ngFor="let topic of topics" [value]="topic.value">
             {{ topic.viewValue }}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
-    <!--button mat-raised-button type="submit" color="primary">Save</button-->
   </form>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
-  <!--button mat-raised-button class="close" (click)="onNoClick()" color="warn">Cancel</button-->
+  <button class="center" mat-button (click)="onNoClick()">Cancel</button>
+  <button class="center" mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
 </div>

@@ -36,9 +36,9 @@ export class HomeComponent implements OnInit {
   panelOpenState: boolean = false;
   private questions: Question[] = [];
   post = {
-    title: '',
-    body: '',
-    category: ''
+    question: '',
+    description: '',
+    topics: []
   };
 
   constructor(private questionService: QuestionService, public dialog: MatDialog,
@@ -70,11 +70,19 @@ export class HomeComponent implements OnInit {
       data: this.post
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(data => {
       console.log('HomeComponent: Closing "Post" dialog.....');
-      if (result) {
+      if (data) {
         console.log('HomeComponent: Values retured from dialog')
-        console.log(result);
+        console.log(data);
+        let payload={data};
+        console.log('HomeComponent: Sending question payload to the server');
+        this.questionService.addQuestion(payload).subscribe((res)=>{
+          console.log(res);
+          this.questions.push(data);
+        },(err)=>{
+          console.log(err);
+        });
       }
     });
   }
@@ -83,6 +91,7 @@ export class HomeComponent implements OnInit {
 @Component({
   selector: 'app-post-dialog',
   templateUrl: './post-dialog.component.html',
+  styleUrls: ['./post-dialog.component.css']
 })
 export class PostDialogComponent {
 

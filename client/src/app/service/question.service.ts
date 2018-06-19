@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Globals } from '../globals';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class QuestionService {
   }
 
   addQuestion(question) {
-    return this.http.get(this.serverUrl + '/add/question');
+    return this.http.post(Globals.AddQuestionAPI, question);
   }
 
   removeQuestion(question) {
