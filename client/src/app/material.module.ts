@@ -1,18 +1,23 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {
-    MatButtonModule, MatToolbarModule, MatInputModule,
-    MatCardModule, MatProgressSpinnerModule, MatSidenavModule, MatListModule,
-    MatIconModule, MatTableModule, MatDialogModule, MatSelectModule
-} from '@angular/material';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCardModule, MatCheckboxModule, 
+  MatFormFieldModule, MatInputModule, MatRippleModule, 
+  MatToolbarModule, MatProgressSpinnerModule, MatSidenavModule,
+   MatListModule, MatIconModule, MatTableModule, 
+   MatDialogModule, MatSelectModule, MatStepperModule} from '@angular/material';
 
 @NgModule({
-    imports: [MatButtonModule, MatToolbarModule, MatToolbarModule, MatInputModule,
-        MatCardModule, MatProgressSpinnerModule, MatSidenavModule, MatListModule, MatIconModule,
-        MatTableModule, MatDialogModule, MatSelectModule],
-    exports: [MatButtonModule, MatToolbarModule, MatToolbarModule, MatInputModule,
-        MatCardModule, MatProgressSpinnerModule, MatSidenavModule, MatListModule,
-        MatIconModule, MatTableModule, MatDialogModule, MatSelectModule]
+  imports: [MatButtonModule, MatCardModule,MatCheckboxModule, 
+    NoopAnimationsModule, MatFormFieldModule, MatInputModule,
+     MatRippleModule, MatToolbarModule, MatProgressSpinnerModule, 
+     MatSidenavModule, MatListModule, MatIconModule,
+  MatTableModule, MatDialogModule, MatSelectModule],
+  
+  exports: [MatButtonModule, MatCardModule,MatCheckboxModule, 
+    NoopAnimationsModule, MatFormFieldModule, MatInputModule,
+     MatRippleModule, MatToolbarModule, MatProgressSpinnerModule, 
+     MatSidenavModule, MatListModule, MatIconModule,
+  MatTableModule, MatDialogModule, MatSelectModule, MatStepperModule]
 })
 
 

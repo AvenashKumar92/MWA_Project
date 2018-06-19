@@ -19,10 +19,10 @@ mongoose.Promise = global.Promise;
 // Connecting database
 mongoose.connect(url)
   .then(() => {
-    console.log("Successfully connected to the database");
+    console.log("From App.js: Successfully connected to the database");
   }).catch(err => {
     console.log(err);
-    console.log('Could not connect to the database. Exiting now...');
+    console.log('From App.js: Could not connect to the database. Exiting now...');
     process.exit();
   });
 

@@ -2,14 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LoginComponent } from './login/login.component'
 import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { appRoutes } from "./app-routing";
 import { RegistrationComponent } from './registration/registration.component';
 
-
-import { MyOwnCustomMaterialModule } from './my-own-custom-material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -23,6 +20,7 @@ import { CommentService } from './service/comment.service';
 import { QuestionService } from './service/question.service';
 import { SubscribeService } from './service/subscribtions.service';
 import { TokenInterceptor } from './interceptor/token.interceptor';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -42,7 +40,7 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
     BrowserAnimationsModule,
     FlexLayoutModule,
     appRoutes,
-    MyOwnCustomMaterialModule,
+    MaterialModule,
     HttpClientModule
   ],
   providers: [AuthService, 
