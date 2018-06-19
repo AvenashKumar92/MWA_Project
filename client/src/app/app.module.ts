@@ -8,11 +8,10 @@ import { appRoutes } from "./app-routing";
 import { RegistrationComponent } from './registration/registration.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent, PostDialogComponent } from './home/home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DataService } from './data/data.service';
 import {AuthService} from './service/auth.service';
-import { PostDialogComponent } from './post-dialog/post-dialog.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { QuestionComponent } from './question/question.component';
 import { CommentsComponent } from './comments/comments.component';
