@@ -20,6 +20,7 @@ import {
 })
 export class HomeComponent {
 
+  panelOpenState: boolean = false;
   private questions;
   constructor(private questionService: QuestionService, public dialog: MatDialog,
     private auth: AuthService, 
@@ -59,7 +60,7 @@ export class PostDataSource extends DataSource<any> {
   }
   connect(): Observable<String[]> {
     let posts: String[];
-    posts = ['asd', 'asdsad'];
+    posts = ['What are c++ templates?', 'What is event loop?'];
     this.questionService.getsubscribeQuestions().subscribe(
       (data: any) => {
 
