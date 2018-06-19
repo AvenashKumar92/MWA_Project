@@ -50,9 +50,13 @@ userSchema.statics.findQuestions=function(emailID, cb){
 
 //Done
 userSchema.statics.findSubscribedQuestions=function(emailID, subscriptions, cb){
-    return this.find({email:{$ne:emailID}, 
-        questions:{$elemMatch: {topics: {$in:subscriptions}}}}).select('questions').exec(cb);
-
+    return this.aggregate([{"$unwind": "$questions"}, 
+    {$group:{"_id":{"email":"$email", "question":"$questions.question"}, 
+    "comments":{"$addToSet":"$questions.comment"},
+        "topics":{"$addToSet":"$questions.topics"}}}, 
+    {$project:{"_id":0,"email":"$_id.email", "question":"$_id.question", 
+    "comments":"$comments",
+    "topics":"$topics"}}], cb);
 }
 
 userSchema.statics.addQuestion=function(emailID, question, cb){

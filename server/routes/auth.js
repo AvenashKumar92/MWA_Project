@@ -37,13 +37,13 @@ router.get('/subscribed/questions', function (req, res, next) {
     }
 
     //Find the questions
-    User.findSubscribedQuestions(req.user.email, userSubscription.subscriptions, function (err, questions) {
+    User.findSubscribedQuestions(req.user.email, userSubscription.subscriptions, function (err, data) {
       if (err) {
         information.message = err.message;
         information.status = Globals.DB_SELECTION;
         res.status(400).json({ err, information });
       }
-      res.json({ questions, information });
+      res.json({ data, information });
     });
   })
 });
