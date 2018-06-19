@@ -33,21 +33,19 @@ export class HomeComponent implements OnInit {
   panelOpenState: boolean = false;
   private questionData: QuesInfo[] = [];
   constructor(private questionService: QuestionService, public dialog: MatDialog,
-    private auth: AuthService,
-    private router: Router) {
+    private auth: AuthService) {
 
   }
 
   ngOnInit() {
+
+    console.log('HomeComponent: Getting data of subscribed questions......');
     this.questionService.getsubscribeQuestions().subscribe((data: any) => {
-      //console.log(data);
+      console.log('HomeComponent: Received subscribed question');
       for (let quesInfo in data.data) {
         let questionInfo = new QuesInfo(data.data[quesInfo]['email'], data.data[quesInfo]['question']);
         questionInfo.topics = data.data[quesInfo]['topics'][0].join(", ");
-
         questionInfo.comments = data.data[quesInfo]['comments'][0];
-        console.log(questionInfo.comments);
-
         this.questionData.push(questionInfo);
       }
     });
