@@ -3,8 +3,7 @@
 		<div mat-card-avatar class="header-image"></div>
 	</mat-card-header>
 	<mat-card-content>
-		<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-			<div formGroupName="userData">
+		<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 				<div class="form-group">
 					<mat-form-field>
 						<input matInput placeholder="Email" type="text" class="form-control" id="email" formControlName="email">
@@ -16,10 +15,10 @@
 						<input matInput placeholder="Password" type="password" class="form-control" id="password" formControlName="password">
 					</mat-form-field>
 				</div>
-			</div>
 
 
-			<button class="btn" type="submit" mat-raised-button color="primary" [disabled]="!myForm.valid">Sign In</button>
+
+			<button class="btn" type="submit" mat-raised-button color="primary" [disabled]="!loginForm.valid">Sign In</button>
 			<a class="btn" mat-raised-button color="primary" href="/registration">Sign Up</a>
 			<router-outlet></router-outlet>
 

@@ -30,7 +30,7 @@ export class PostDialogComponent {
   }
 
   onSubmit(): void {
-    this.blogPost.position = this.dataService.dataLength();
+    //this.blogPost.position = this.dataService.dataLength();
     this.event.emit({ data: this.blogPost });
     this.dialogRef.close();
   }

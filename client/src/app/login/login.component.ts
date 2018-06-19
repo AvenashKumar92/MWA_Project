@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../model/user';
+import {AuthService} from '../service/auth.service'
 
 
 
@@ -14,43 +15,23 @@ import { User } from '../model/user';
 export class LoginComponent  {
 
   userInfo:User=new User();
-  myForm: FormGroup;
+  loginForm: FormGroup;
   constructor(private formBuilder: FormBuilder, 
-    //private userInfoService: UserInfoService, 
+    private auth: AuthService, 
     private router: Router) { 
-    this.myForm=formBuilder.group({
-      'userData':formBuilder.group({
+    this.loginForm=formBuilder.group({
         'email': ['', [Validators.required, 
           Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
         ]],
-        'password':['', [Validators.required, Validators.minLength(10)]]
-      })
+        'password':['', [Validators.required]]
+      
     })
   }
 
-  emailValidator(control: FormControl):{[s:string]:boolean}{
-    Validators.pattern
-    if(control.value===''){
-      return {email:true};
-    }
-    return null;
-  }
-
-  /*onGetData(){
-    this.userInfoService.getUserInfo().subscribe((userData)=>{      
-        this.userInfoService.getPosts().subscribe((posts)=>{
-          this.myForm.patchValue({userData:{name: userData['name']}});
-          this.myForm.patchValue({userData:{email: userData['email'].toLowerCase()}});
-          this.myForm.patchValue({userData:{post: posts[0]['title']}});
-        });
-    });
-  }*/
-
   onSubmit() {
-    console.log('Reactive Form Data: ');
-    console.log(this.myForm.value);
-    
-    this.router.navigateByUrl('/success');
+    console.log('LoginComponent: Application login.......');
+    let email:string=this.loginForm.value.email;
+    let password:string=this.loginForm.value.password;
+    this.auth.login(email, password);
   }
-
 }

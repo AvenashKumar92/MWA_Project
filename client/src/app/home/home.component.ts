@@ -6,6 +6,9 @@ import { Observable } from 'rxjs/Observable';
 import { PostDialogComponent } from '../post-dialog/post-dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { QuestionService } from '../service/question.service';
+import {AuthService} from '../service/auth.service'
+import { Router } from '@angular/router';
+
 import {
   MatTableDataSource
 } from '@angular/material';
@@ -18,8 +21,15 @@ import {
 export class HomeComponent {
 
   private questions;
-  constructor(private questionService: QuestionService, public dialog: MatDialog) {
+  constructor(private questionService: QuestionService, public dialog: MatDialog,
+    private auth: AuthService, 
+    private router: Router) {
     this.questions = this.questionService.getsubscribeQuestions();
+  }
+
+  onLogOut(){
+    console.log('HomeComponent: Application logout.......');
+    this.auth.logout();
   }
 
   displayedColumns = ['title'];
