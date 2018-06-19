@@ -21,6 +21,7 @@ import { QuestionService } from './service/question.service';
 import { SubscribeService } from './service/subscribtions.service';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 import { MaterialModule } from './material.module';
+import { RegistrationService } from './service/registration.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { MaterialModule } from './material.module';
     MaterialModule,
     HttpClientModule
   ],
-  providers: [AuthService, 
+  providers: [AuthService,
+    RegistrationService, 
     DataService, 
     CommentService, 
     QuestionService, 
