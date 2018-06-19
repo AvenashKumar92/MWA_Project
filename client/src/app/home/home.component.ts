@@ -16,6 +16,8 @@ import {
 class QuesInfo {
   public topics;
   public comments;
+  public fname;
+  public lname;
   constructor(public email, public question) {
 
   }
@@ -33,21 +35,19 @@ export class HomeComponent implements OnInit {
   panelOpenState: boolean = false;
   private questionData: QuesInfo[] = [];
   constructor(private questionService: QuestionService, public dialog: MatDialog,
-    private auth: AuthService,
-    private router: Router) {
+    private auth: AuthService) {
 
   }
 
   ngOnInit() {
+
+    console.log('HomeComponent: Getting data of subscribed questions......');
     this.questionService.getsubscribeQuestions().subscribe((data: any) => {
-      //console.log(data);
+      console.log('HomeComponent: Received subscribed question');
       for (let quesInfo in data.data) {
         let questionInfo = new QuesInfo(data.data[quesInfo]['email'], data.data[quesInfo]['question']);
         questionInfo.topics = data.data[quesInfo]['topics'][0].join(", ");
-
         questionInfo.comments = data.data[quesInfo]['comments'][0];
-        console.log(questionInfo.comments);
-
         this.questionData.push(questionInfo);
       }
     });
@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
     this.auth.logout();
   }
 
-  displayedColumns = ['title'];
+  //displayedColumns = ['title'];
   dataSource = new PostDataSource(this.questionService);
 
   openDialog() {
@@ -67,8 +67,7 @@ export class HomeComponent implements OnInit {
       data: 'Add Discussion'
     });
     dialogRef.afterClosed().subscribe((result) => {
-      this.questionService.addQuestion(result);
-      this.dataSource = new PostDataSource(this.questionService);
+      console.log(result);
     });
   }
 }

@@ -9,7 +9,7 @@ import { DataService } from '../data/data.service';
 })
 export class PostDialogComponent {
 
-  blogPost = {
+  post = {
     title: '',
     body: '',
     category: '',
@@ -30,8 +30,9 @@ export class PostDialogComponent {
   }
 
   onSubmit(): void {
-    //this.blogPost.position = this.dataService.dataLength();
-    this.event.emit({ data: this.blogPost });
+    console.log("Hello");
+    console.log(this.post);
+    this.event.emit({ data: this.post });
     this.dialogRef.close();
   }
 
