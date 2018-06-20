@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
   onKeyDown(event){
     if(event.key==="Enter"){
       let comment=event.target.value;
-      if(comment){
+      if(comment!=""){
         console.log('HomeComponent: Received new comment......');
         let question=event.target.name;
         console.log('HomeComponent: Updating post......');

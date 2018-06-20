@@ -34,7 +34,7 @@
           </div>
 
           <div class="form-group">
-            <mat-form-field>
+            <mat-form-field class="example-full-width">
               <input matInput placeholder="Email" type="email" class="form-control" id="email" formControlName="email">
             </mat-form-field>
           </div>
@@ -48,7 +48,6 @@
           <ng-template matStepLabel>Personal Details</ng-template>
           <span class="form-group">
             <mat-form-field>
-              <span matPrefix>+1 &nbsp;</span>
               <input matInput placeholder="Contact" type="number" class="form-control" id="contact" formControlName="contact">
             </mat-form-field>
           </span>
@@ -59,7 +58,11 @@
             </mat-form-field>
           </span>
 
-
+          <div class="form-group">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Expertise (c++, java)" type="text" class="form-control" id="subscriptions" formControlName="subscriptions">
+              </mat-form-field>
+          </div>
 
           <div>
             <button class="btn" mat-button matStepperPrevious mat-raised-button color="primary" type="button">Back</button>

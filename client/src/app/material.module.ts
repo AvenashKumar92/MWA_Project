@@ -4,20 +4,20 @@ import {MatButtonModule, MatCardModule, MatCheckboxModule,
   MatFormFieldModule, MatInputModule, MatRippleModule, 
   MatToolbarModule, MatProgressSpinnerModule, MatSidenavModule,
    MatListModule, MatIconModule, MatTableModule, 
-   MatDialogModule, MatSelectModule, MatStepperModule, MatExpansionModule} from '@angular/material';
+   MatDialogModule, MatSelectModule, MatStepperModule, MatExpansionModule, MatAutocompleteModule} from '@angular/material';
 
 @NgModule({
   imports: [MatButtonModule, MatCardModule,MatCheckboxModule, 
     NoopAnimationsModule, MatFormFieldModule, MatInputModule,
      MatRippleModule, MatToolbarModule, MatProgressSpinnerModule, 
      MatSidenavModule, MatListModule, MatIconModule,
-  MatTableModule, MatDialogModule, MatSelectModule, MatExpansionModule],
+  MatTableModule, MatDialogModule, MatSelectModule, MatExpansionModule, MatAutocompleteModule],
   
   exports: [MatButtonModule, MatCardModule,MatCheckboxModule, 
     NoopAnimationsModule, MatFormFieldModule, MatInputModule,
      MatRippleModule, MatToolbarModule, MatProgressSpinnerModule, 
      MatSidenavModule, MatListModule, MatIconModule,
-  MatTableModule, MatDialogModule, MatSelectModule, MatStepperModule, MatExpansionModule]
+  MatTableModule, MatDialogModule, MatSelectModule, MatStepperModule, MatExpansionModule, MatAutocompleteModule]
 })
 
 
