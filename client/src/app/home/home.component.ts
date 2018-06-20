@@ -1,6 +1,4 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { DataService } from '../data/data.service';
-import { Post, PostMaker } from '../model/Post';
 import { DataSource } from '@angular/cdk/table';
 import { Observable } from 'rxjs/Observable';
 import { MatDialog, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material';
@@ -70,7 +68,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     console.log('HomeComponent: Getting data of subscribed questions......');
-    this.questionService.getsubscribeQuestions().subscribe((data: any) => {
+    this.questionService.getSubscribeQuestions().subscribe((data: any) => {
       console.log('HomeComponent: Received subscribed question');
       for (let quesInfo in data.data) {
         let questionInfo = new Question(data.data[quesInfo]['email'], data.data[quesInfo]['question']);

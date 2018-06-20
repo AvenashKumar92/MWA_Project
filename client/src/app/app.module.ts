@@ -10,11 +10,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent, PostDialogComponent } from './home/home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { DataService } from './data/data.service';
 import {AuthService} from './service/auth.service';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
-import { QuestionComponent } from './question/question.component';
-import { CommentsComponent } from './comments/comments.component';
 import { CommentService } from './service/comment.service';
 import { QuestionService } from './service/question.service';
 import { SubscribeService } from './service/subscribtions.service';
@@ -28,9 +25,7 @@ import { RegistrationService } from './service/registration.service';
     LoginComponent,
     RegistrationComponent,
     HomeComponent,
-    PostDialogComponent,
-    QuestionComponent,
-    CommentsComponent
+    PostDialogComponent
   ],
   entryComponents: [PostDialogComponent],
   imports: [
@@ -44,8 +39,7 @@ import { RegistrationService } from './service/registration.service';
     HttpClientModule
   ],
   providers: [AuthService,
-    RegistrationService, 
-    DataService, 
+    RegistrationService,
     CommentService, 
     QuestionService, 
     SubscribeService, 

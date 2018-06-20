@@ -2,12 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Globals } from '../globals';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class QuestionService {
-
-  serverUrl: string = "http://localhost:8080/auth";
   constructor(
     private http: HttpClient
   ) {
@@ -15,16 +11,11 @@ export class QuestionService {
   }
 
 
-  getsubscribeQuestions() {
-    return this.http.get(this.serverUrl + '/subscribed/questions');
+  getSubscribeQuestions() {
+    return this.http.get(Globals.SubscribedQuestionsAPU);
   }
 
   addQuestion(question) {
     return this.http.post(Globals.AddQuestionAPI, question);
   }
-
-  removeQuestion(question) {
-    return this.http.get(this.serverUrl + '/remove/question');
-  }
-
 }
