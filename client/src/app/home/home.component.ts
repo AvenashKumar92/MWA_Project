@@ -37,7 +37,8 @@ export class HomeComponent implements OnInit {
   post = {
     question: '',
     description: '',
-    topics: []
+    topics: [],
+    comments:[]
   };
 
   constructor(private questionService: QuestionService, public dialog: MatDialog,
@@ -56,8 +57,10 @@ export class HomeComponent implements OnInit {
 
   
   addCommentInPost(question, comment){
+    console.log(this.questions);
     for (let idx in this.questions){
       let questionInfo=this.questions[idx];
+      
       if(questionInfo.question==question){
         questionInfo.comments.push(comment);
       }
