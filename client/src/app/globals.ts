@@ -2,6 +2,7 @@ export class Globals{
     static LoginAPI="http://localhost:8080/user/login";
     static RegUserAPI="http://localhost:8080/user/register";
     static AddQuestionAPI="http://localhost:8080/auth/add/question";
+    static AddCommentAPI="http://localhost:8080/auth/add/comment";
     static SubscribedQuestionsAPU="http://localhost:8080/auth/subscribed/questions";
     static Topics = [
         { value: 'Web-Development', viewValue: 'Web Development' },

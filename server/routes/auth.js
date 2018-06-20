@@ -69,7 +69,7 @@ router.get('/remove/question', function (req, res, next) {
 
 /*Add comment */
 router.post('/add/comment', function (req, res, next) {
-  User.addComment(req.user.email,req.body.data, function (err, data) {
+  User.addComment(req.user.email, req.body.data.question, req.body.data.comment, function (err, data) {
     let information = new Information(Globals.SUCCESS);
     if (err) {
       information.message = err.message;

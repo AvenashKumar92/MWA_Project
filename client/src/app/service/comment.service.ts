@@ -1,23 +1,19 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import { HttpClient } from '@angular/common/http'
+import { Globals } from '../globals';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CommentService {
 
-  serverUrl: string = "http://localhost:8080";
   constructor(
     private http: HttpClient
-  ) { }
-
-
-  addComment() {
-    return this.http.get(this.serverUrl + '/add/comment');
+  ) { 
+    
   }
 
-  removeComment() {
-    return this.http.get(this.serverUrl + '/remove/comment');
+
+  addComment(payload) {
+    return this.http.post(Globals.AddCommentAPI, payload);
   }
 }
