@@ -28,20 +28,20 @@ export class RegistrationComponent implements OnInit {
     private regService:RegistrationService
     ) {
     this.registrationForm = formBuilder.group({
-      'fname': ['Avenash', [Validators.required]],
-      'lname': ['Kumar', [Validators.required]],
-      'password': ['password', [Validators.required]],
-      'cpassword': ['password', [Validators.required]],
-      'email': ['av.kumar@mum.edu', [Validators.required, Validators.email]],
-      'contact': ['3473246779', [Validators.required]],
-      'portfolio': ['https://www.linkedin.com/in/avenashkumarse1993'],
+      'fname': ['', [Validators.required]],
+      'lname': ['', [Validators.required]],
+      'password': ['', [Validators.required, Validators.minLength(5)]],
+      'cpassword': ['', [Validators.required, Validators.minLength(5)]],
+      'email': ['', [Validators.required, Validators.email]],
+      'contact': ['', [Validators.required]],
+      'portfolio': [''],
       'subscriptions':['', [Validators.required]],
       'company': formBuilder.group({
-        'designation': ['Software Engineer'],
-        'cname': ['NASA'],
-        'city': ['California'],
-        'state': ['California'],
-        'country': ['USA']
+        'designation': [''],
+        'cname': [''],
+        'city': [''],
+        'state': [''],
+        'country': ['']
       })
     }, { validator: this.cpasswordMatchValidator });
 

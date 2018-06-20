@@ -9,5 +9,9 @@ export class Globals{
         { value: 'Android-Development', viewValue: 'Android Development' },
         { value: 'IOS-Development', viewValue: 'IOS Development' },
         { value: 'C++', viewValue: 'C++' },
+        { value: 'Java', viewValue: 'Java' },
+        { value: 'Node', viewValue: 'Node' },
+        { value: 'Mongo', viewValue: 'Mongo' },
+        { value: 'Angular', viewValue: 'Angular' }
       ];
 }

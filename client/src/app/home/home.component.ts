@@ -92,7 +92,7 @@ export class HomeComponent implements OnInit {
       console.log('HomeComponent: Displaying subscribed questions.....');
       for (let quesInfo in data.data) {
         let questionInfo = new Question(data.data[quesInfo]['email'], data.data[quesInfo]['question']);
-        questionInfo.topics = data.data[quesInfo]['topics'][0].join(", ");
+        questionInfo.topics = data.data[quesInfo]['topics'][0].join(",");
         questionInfo.comments = data.data[quesInfo]['comments'][0];
         this.questions.push(questionInfo);
       }
