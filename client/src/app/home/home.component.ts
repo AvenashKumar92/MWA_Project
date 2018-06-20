@@ -37,30 +37,34 @@ export class HomeComponent implements OnInit {
     question: '',
     description: '',
     topics: [],
-    comments:[]
+    comments: []
   };
 
-  constructor(private questionService: QuestionService, 
-    private commentService:CommentService, 
+  constructor(private questionService: QuestionService,
+    private commentService: CommentService,
     public dialog: MatDialog,
     private auth: AuthService) {
 
   }
 
-  onKeyDown(event){
-    if(event.key==="Enter"){
-      let comment=event.target.value;
-      if(comment!=""){
+  onKeyDown(event) {
+    if (event.key === "Enter") {
+      let comment = event.target.value;
+      if (comment != "") {
         console.log('HomeComponent: Received new comment......');
-        let question=event.target.name;
+        let question = event.target.name;
+
         console.log('HomeComponent: Updating post......');
         this.addCommentInPost(question, comment);
-        event.target.value="";
+
         console.log('HomeComponent: Sending comment to server......');
-        let payload={data:{question, comment}};
-        this.commentService.addComment(payload).subscribe((data)=>{
+        let payload = { data: { question, comment } };
+
+        this.commentService.addComment(payload).subscribe((data) => {
+
           console.log("HomeComponent: Successfully add comment in database");
-        }, (err)=>{
+          event.target.value = "";
+        }, (err) => {
           console.log("HomeComponent: Unable to add comment in database");
           console.log(err);
         })
@@ -68,13 +72,13 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  
-  addCommentInPost(question, comment){
+
+  addCommentInPost(question, comment) {
     console.log(this.questions);
-    for (let idx in this.questions){
-      let questionInfo=this.questions[idx];
-      
-      if(questionInfo.question==question){
+    for (let idx in this.questions) {
+      let questionInfo = this.questions[idx];
+
+      if (questionInfo.question == question) {
         questionInfo.comments.push(comment);
       }
     }
@@ -100,25 +104,37 @@ export class HomeComponent implements OnInit {
     this.auth.logout();
   }
 
+
+
   openDialog(): void {
     let dialogRef = this.dialog.open(PostDialogComponent, {
       width: '500px',
       data: this.post
     });
 
-    dialogRef.afterClosed().subscribe(data => {
+    dialogRef.afterClosed().subscribe(refData => {
       console.log('HomeComponent: Closing "Post" dialog.....');
-      if (data) {
-        console.log('HomeComponent: Getting values from dialog')
-        let payload={data};
-        console.log('HomeComponent: Sending post to the server');
-        this.questionService.addQuestion(payload).subscribe((res)=>{
-          console.log("HomeComponent: Successfully add post in database");
-          this.questions.push(data);
-        },(err)=>{
-          console.log("HomeComponent: Unable to add post in database");
-          console.log(err);
-        });
+
+      if (refData) {
+        console.log(refData);
+        let data = JSON.parse(JSON.stringify(refData));
+        refData.question="";
+        refData.description="";
+        refData.topics=[];
+
+        if (data) {
+          console.log('HomeComponent: Getting values from dialog')
+          let payload = { data };
+
+          console.log('HomeComponent: Sending post to the server');
+          this.questionService.addQuestion(payload).subscribe((res) => {
+            console.log("HomeComponent: Successfully add post in database");
+            this.questions.push(data);
+          }, (err) => {
+            console.log("HomeComponent: Unable to add post in database");
+            console.log(err);
+          });
+        }
       }
     });
   }
@@ -134,9 +150,9 @@ export class PostDialogComponent {
   public topics;
   constructor(
     public dialogRef: MatDialogRef<PostDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { 
-      this.topics = Globals.Topics;
-    }
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.topics = Globals.Topics;
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

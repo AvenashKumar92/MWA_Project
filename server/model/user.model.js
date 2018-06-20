@@ -66,7 +66,7 @@ userSchema.statics.addQuestion=function(emailID, question, cb){
 }
 
 userSchema.statics.addComment=function(emailID, question, comment, cb){
-    return this.findOneAndUpdate({email: emailID, "questions.question":question}, 
+    return this.findOneAndUpdate({"questions.question":question}, 
         {$push: {"questions.$.comment": comment}}).exec(cb);
 }
 
