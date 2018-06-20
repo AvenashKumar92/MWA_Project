@@ -50,7 +50,7 @@ userSchema.statics.findQuestions=function(emailID, cb){
 
 //Done
 userSchema.statics.findSubscribedQuestions=function(emailID, subscriptions, cb){
-    //{ $match: {mcount: {$gt: 0}}},
+    
     return this.aggregate([{"$unwind": "$questions"}, 
     {"$match":{"questions.topics":{"$elemMatch":{"$in":subscriptions}}}},
     {$group:{"_id":{"email":"$email", "question":"$questions.question"}, 
@@ -63,6 +63,11 @@ userSchema.statics.findSubscribedQuestions=function(emailID, subscriptions, cb){
 
 userSchema.statics.addQuestion=function(emailID, question, cb){
         return this.findOneAndUpdate({email: emailID}, {$push: {questions: question}}).exec(cb);
+}
+
+userSchema.statics.addComment=function(emailID, question, comment, cb){
+    return this.findOneAndUpdate({email: emailID, "questions.question":question}, 
+        {$push: {"questions.$.comment": comment}}).exec(cb);
 }
 
 module.exports = mongoose.model('user', userSchema);

@@ -45,6 +45,25 @@ export class HomeComponent implements OnInit {
 
   }
 
+  onKeyDown(event){
+    if(event.key==="Enter"){
+      let comment=event.target.value;
+      let question=event.target.name;
+      this.addCommentInPost(question, comment);
+      event.target.value="";
+    }
+  }
+
+  
+  addCommentInPost(question, comment){
+    for (let idx in this.questions){
+      let questionInfo=this.questions[idx];
+      if(questionInfo.question==question){
+        questionInfo.comments.push(comment);
+      }
+    }
+  }
+
   ngOnInit() {
 
     console.log('HomeComponent: Getting data of subscribed questions......');

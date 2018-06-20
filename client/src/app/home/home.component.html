@@ -89,9 +89,8 @@
                 <div *ngFor="let comment of item.comments">
                   <p>{{comment}}</p>
                 </div>
-
                 <mat-form-field>
-                  <input matInput placeholder="New Comments">
+                  <input matInput placeholder="New Comments" name={{item.question}} (keyup)="onKeyDown($event)">
                 </mat-form-field>
               </mat-expansion-panel>
             </div>
